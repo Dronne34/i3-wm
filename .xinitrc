@@ -13,4 +13,4 @@ exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 exec eval "$(ssh-agent -s)"  &
 exec sxhkd &    
 exec dunst &
-exec /usr/bin/i3 -V -d all >> ~/.config/i3/log/logfile
+exec /usr/bin/i3
