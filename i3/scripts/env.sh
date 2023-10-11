@@ -1,0 +1,2 @@
+#*/1 * * * * env DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus nitrogen --set-auto --random "$HOME/Google-Drive/wallpaper-backup/"
+env DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus nitrogen --set-zoom-fill --random   "$HOME/Google-Drive/wallpaper-backup/" | env DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus notify-send -i stock_dialog-warning -t 5000 "MSG. DISPLAY" "**The image has been changed**"
