@@ -61,11 +61,12 @@ exec_always --no-startup-id python3 ~/.local/bin/alternating_layouts.py
 # bindsym $mod+Ctrl+c             exec --no-startup-id feh -z --no-fehbg --bg-fill  ~/Google-Drive/wallpaper-backup/ 
 # bindsym $mod+Ctrl+c  exec --no-startup-id nitrogen --set-zoom-fill --random  "$HOME/Google-Drive/wallpaper-backup" | dunstify -i stock_dialog-warning -t 5000 -r 34353 "MSG. DISPLAY" "**The image has been changed**"  
 bindsym $mod+Shift+KP_Divide exec --no-startup-id urxvt -e ranger
-bindsym $mod+d       exec --no-startup-id rofi -show drun -show-icons -font "mononoki Nerd Font 12" -run-shell-command
+# bindsym $mod+d       exec --no-startup-id rofi -show drun -show-icons -font "mononoki Nerd Font 12" -run-shell-command
+bindsym $mod+d       exec --no-startup-id dmenu_run
 bindsym $mod+Shift+m exec --no-startup-id pulseaudio-equalizer-gtk
 bindsym $mod+Shift+p exec --no-startup-id pavucontrol
 bindsym $mod+Shift+s exec --no-startup-id subl
-bindsym $mod+Shift+t exec --no-startup-id thunar
+bindsym $mod+Shift+t exec --no-startup-id pcmanfm
 bindsym $mod+Shift+i exec --no-startup-id brave --guest --homepage https://duckduckgo.com/
 bindsym $mod+Shift+b exec --no-startup-id brave --homepage https://duckduckgo.com/
 bindsym $mod+t       exec --no-startup-id pkill picom
@@ -213,7 +214,7 @@ for_window [class="vlc"] border pixel 1
 for_window [class="Nitrogen"] floating enable,move absolute position center
 for_window [class="Gpick"] floating enable,move absolute position center,resize set 890 548
 for_window [title="Open File"] floating enable, move absolute position
-for_window [title="^Media viewer"] floating enable fullscreen disable
+for_window [title="^Media viewer"] floating enable, move absolute position center
 for_window [class="Gnome-system-monitor"] floating enable, move absolute position center
 for_window [class="File-roller"] floating enable, move absolute position center
 
@@ -235,7 +236,7 @@ for_window [window_role="Preferences"] floating enable
 #for_window [class="Chromium"]  move container to workspace $ws3; workspace $ws3
 for_window [class="Brave-browser"]  move container to workspace $ws3; workspace $ws3
 for_window [class="Subl"] move container to workspace $ws1; workspace $ws1
-for_window [class="St"] move container to workspace $ws5; workspace $ws5
+for_window [class="st-256color"] move container to workspace $ws5; workspace $ws5
 for_window [class="TelegramDesktop"] move container to workspace $ws4; workspace $ws4
 for_window [class="Hexchat"]  move container to workspace $ws4; workspace $ws4
 for_window [class="code-oss"]  move container to workspace $ws1; workspace $ws1
@@ -295,10 +296,10 @@ bar {
         tray_padding 2
         separator_symbol ":|:"
         workspace_buttons yes
-        workspace_min_width 40
+        workspace_min_width 25
         strip_workspace_name no
         strip_workspace_numbers no
-
+        position top
         #separator_symbol ""
 
 colors {
