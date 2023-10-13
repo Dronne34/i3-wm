@@ -147,6 +147,7 @@ bindsym $mod+a focus parent
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
+
 # focus the child container
 #bindsym $mod+d focus child
 
@@ -183,38 +184,38 @@ bindsym $mod+Ctrl+7 move container to workspace $ws7
 bindsym $mod+Ctrl+8 move container to workspace $ws8
 
 # You can also use any non-zero value if you'd like to have a border
-for_window [class=".*"] border pixel 1
-for_window [class="vlc-main"] border pixel 0
-for_window [class="vlc"] border pixel 1
-for_window [class="Nitrogen"] floating enable,move absolute position center
-for_window [class="Gpick"] floating enable,move absolute position center,resize set 890 548
-for_window [title="Open File"] floating enable, move absolute position
-for_window [title="^Media viewer"] floating enable, move absolute position center
-for_window [class="Gnome-system-monitor"] floating enable, move absolute position center
-for_window [class="File-roller"] floating enable, move absolute position center
+for_window [class=".*"]                   border pixel 1
+for_window [class="vlc-main"]             border pixel 0
+for_window [class="vlc"]                  border pixel 1
+for_window [title="Open File"]            floating enable;move absolute position
+for_window [class="Nitrogen"]             floating enable;move absolute position center
+for_window [title="^Media viewer"]        floating enable;move absolute position center
+for_window [class="Gnome-system-monitor"] floating enable;move absolute position center
+for_window [class="File-roller"]          floating enable;move absolute position center
+for_window [class="Gpick"]                floating enable;move absolute position center
 
 # Correct handling of floating windows
-for_window [window_role="pop-up"] floating enable
-for_window [window_role="bubble"] floating enable
-for_window [window_role="task_dialog"] floating enable
-for_window [window_role="dialog"] floating enable
-for_window [window_role="menu"] floating enable
-for_window [window_role="Preferences"] floating enable
+for_window [window_role="pop-up"]         floating enable
+for_window [window_role="bubble"]         floating enable
+for_window [window_role="task_dialog"]    floating enable
+for_window [window_role="dialog"]         floating enable
+for_window [window_role="menu"]           floating enable
+for_window [window_role="Preferences"]    floating enable
 
 
 # Open specific applications in floating mode
 #for_window [class="Chromium"]  move container to workspace $ws3; workspace $ws3
-for_window [class="Brave-browser"]  move container to workspace $ws3; workspace $ws3
-for_window [class="Subl"]      resize shrink width 10 px or 10 ppt; move container to workspace $ws1
-for_window [class="Alacritty"] resize shrink width 10 px or 10 ppt; move container to workspace $ws1
-for_window [class="Pcmanfm"]   resize shrink width 10 px or 10 ppt; move container to workspace $ws1
-for_window [class="Subl"]  move position center
+for_window [class="Brave-browser"]        move container to workspace $ws3; workspace $ws3;
+for_window [class="Subl"]                 move container to workspace $ws1; workspace $ws1;
+for_window [class="Alacritty"]            move container to workspace $ws1; workspace $ws1;
+for_window [class="Pcmanfm"]              move container to workspace $ws1; workspace $ws1;
+for_window [class="Subl"]                 move absolute position center
 
-for_window [class="st-256color"] move container to workspace $ws5; workspace $ws5
-for_window [class="TelegramDesktop"] move container to workspace $ws4; workspace $ws4
-for_window [class="Hexchat"]  move container to workspace $ws4; workspace $ws4
-for_window [class="code-oss"]  move container to workspace $ws1; workspace $ws1
-for_window [class="mpv"] move container to workspace $ws5; workspace $ws5
+for_window [class="st-256color"]          move container to workspace $ws5; workspace $ws5
+for_window [class="TelegramDesktop"]      move container to workspace $ws4; workspace $ws4
+for_window [class="Hexchat"]              move container to workspace $ws4; workspace $ws4
+for_window [class="code-oss"]             move container to workspace $ws1; workspace $ws1
+for_window [class="mpv"]                  move container to workspace $ws5; workspace $ws5
 
 #for_window [class="URxvt"] floating enable, move position 10 px 30 px
 #for_window [class="URxvt"] floating enabled position left
@@ -250,9 +251,9 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 # Resizing by 5
 # resize window (you can also use the mouse for that)
 bindsym $mod+Ctrl+Right resize shrink width 5 px or 5 ppt
-bindsym $mod+Ctrl+Up resize grow height 5 px or 5 ppt
-bindsym $mod+Ctrl+Down resize shrink height 5 px or 5 ppt
-bindsym $mod+Ctrl+Left resize grow width 5 px or 5 ppt
+bindsym $mod+Ctrl+Up    resize grow height 5 px or 5 ppt
+bindsym $mod+Ctrl+Down  resize shrink height 5 px or 5 ppt
+bindsym $mod+Ctrl+Left  resize grow width 5 px or 5 ppt
 
 # no_focus [class="Brave-browser"]
 # no_focus [class="mpv"]
@@ -272,7 +273,7 @@ bar {
         workspace_buttons yes
         workspace_min_width 25
         strip_workspace_name no
-        strip_workspace_numbers no
+        strip_workspace_numbers yes
         position top
         #separator_symbol ""
 
