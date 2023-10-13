@@ -12,8 +12,13 @@ set $mod Mod4
 focus_on_window_activation focus  
 focus_follows_mouse yes
 hide_edge_borders none
+# focus_follows_mouse no
 #default_floating_border none
-gaps inner 11
+gaps outer 10
+gaps inner 10
+# gaps top 2
+# gaps bottom 2
+
 workspace_auto_back_and_forth no
 show_marks yes
 #force_display_urgency_hint 100 ms
@@ -22,6 +27,8 @@ show_marks yes
 #border_radius 5
 #smart_gaps inverse_outer
 #hide_edge_borders smart_no_gaps
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -55,33 +62,14 @@ show_marks yes
 # exec --no-startup-id nm-applet
 # exec_always --no-startup-id autotiling
 # exec_always --no-startup-id blueman-applet
-exec_always --no-startup-id python3 ~/.local/bin/alternating_layouts.py
+exec_always --no-startup-id python3 ~/.local/bin/autolayout.py
 
 # Key
-# bindsym $mod+Ctrl+c             exec --no-startup-id feh -z --no-fehbg --bg-fill  ~/Google-Drive/wallpaper-backup/ 
-# bindsym $mod+Ctrl+c  exec --no-startup-id nitrogen --set-zoom-fill --random  "$HOME/Google-Drive/wallpaper-backup" | dunstify -i stock_dialog-warning -t 5000 -r 34353 "MSG. DISPLAY" "**The image has been changed**"  
-bindsym $mod+Shift+KP_Divide exec --no-startup-id urxvt -e ranger
-# bindsym $mod+d       exec --no-startup-id rofi -show drun -show-icons -font "mononoki Nerd Font 12" -run-shell-command
 bindsym $mod+d       exec --no-startup-id dmenu_run
-bindsym $mod+Shift+m exec --no-startup-id pulseaudio-equalizer-gtk
-bindsym $mod+Shift+p exec --no-startup-id pavucontrol
-bindsym $mod+Shift+s exec --no-startup-id subl
-bindsym $mod+Shift+t exec --no-startup-id pcmanfm
-bindsym $mod+Shift+i exec --no-startup-id brave --guest --homepage https://duckduckgo.com/
-bindsym $mod+Shift+b exec --no-startup-id brave --homepage https://duckduckgo.com/
-bindsym $mod+t       exec --no-startup-id pkill picom
-bindsym $mod+Ctrl+t  exec --no-startup-id picom -bCG
-bindsym $mod+m       exec --no-startup-id ~/.config/i3/scripts/ncmpcpp.sh
 bindsym Print        exec --no-startup-id  maim ~/Pictures/$(date +%s).png; exec --no-startup-id notify-send "Screenshot done" -i simplescreenrecorder-idle
-bindsym $mod+Ctrl+x   --release exec --no-startup-id xkill
-bindsym $mod+Shift+d  --release exec --no-startup-id killall dunst; exec --no-startup-id notify-send "Restart dunst" -i dialog-information 
-bindsym $mod+p exec "notify-send \\"Hello, i3; from $USER\\""
 bindsym $mod+b border toggle
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-
-# NetworkManager is the most popular way to manage wireless networks on Linux,
-# and nm-applet is a desktop environment-independent system tray GUI for it.
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -91,25 +79,17 @@ set $refresh_i3status killall -SIGUSR1 i3status
 # bindsym XF86AudioMicMute exec     --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status | dunstify  -r 3456 -t 700 -i audio-volume-muted  "mute: $(pamixer --get-mute)" | canberra-gtk-play -i audio-volume-change -d "changeVolume"
 
 # Use xbacklight
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10 # increase screen brightness
+bindsym XF86MonBrightnessUp   exec --no-startup-id xbacklight -inc 10 # increase screen brightness
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10 # decrease screen brightness
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # Orientation
-default_orientation horizontal
-#workspace_layout default
-#restore layot
+default_orientation auto
 
 # start a terminal
 bindsym $mod+Return exec --no-startup-id alacritty 
-# for_window [class="Alacritty"]   move left
-# for_window [class="urxvt"]       border pixel 2
-# for_window [class="XTerm"]       border pixel 2
-
-# print all window titles bold
-# for_window [class=".*"] title_format "<b>%title</b>"
 
 
 # kill focused window
@@ -120,10 +100,6 @@ bindsym $mod+KP_Add gaps inner current plus 5
 bindsym $mod+KP_Subtract gaps inner current minus 5
 bindsym $mod+Shift+KP_Add gaps inner all plus 5
 bindsym $mod+Shift+KP_Subtract gaps inner all minus 5
-
-# Border
-# bindsym $mod+Shift+KP_Add border pixel 3
-# bindsym $mod+Shift+KP_Subtract border pixel 1
 
 # change focus
 bindsym $mod+j focus left
@@ -149,28 +125,27 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# split in horizontal orientation
-bindsym $mod+h split h
-
-# split in vertical orientation
-bindsym $mod+v split v
+# Change tilling direction
+bindsym $mod+h split h;exec --no-startup-id notify-send 'Tile horizontally'
+bindsym $mod+v split v;exec --no-startup-id notify-send 'Tile vertically'
+bindsym $mod+Shift+q split toggle;;exec --no-startup-id notify-send 'Splitting toggle'
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
-# change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+# Change container layout
+bindsym $mod+s layout stacking;exec --no-startup-id notify-send 'Stacking mode'
+bindsym $mod+w layout tabbed;exec --no-startup-id notify-send 'Tabbing mode'
+bindsym $mod+e layout toggle split;exec --no-startup-id notify-send 'Splitting mode'
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
+  
+# focus the parent container
+bindsym $mod+a focus parent
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
-
-# focus the parent container
-bindsym $mod+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
@@ -218,11 +193,6 @@ for_window [title="^Media viewer"] floating enable, move absolute position cente
 for_window [class="Gnome-system-monitor"] floating enable, move absolute position center
 for_window [class="File-roller"] floating enable, move absolute position center
 
-#for_window [class="TelegramDesktop"] fullscreen disable
-#bindsym Escape  kill
-
-#bindsym button3 [title=".*^Media viewer"] kill
-
 # Correct handling of floating windows
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="bubble"] floating enable
@@ -235,7 +205,11 @@ for_window [window_role="Preferences"] floating enable
 # Open specific applications in floating mode
 #for_window [class="Chromium"]  move container to workspace $ws3; workspace $ws3
 for_window [class="Brave-browser"]  move container to workspace $ws3; workspace $ws3
-for_window [class="Subl"] move container to workspace $ws1; workspace $ws1
+for_window [class="Subl"]      resize shrink width 10 px or 10 ppt; move container to workspace $ws1
+for_window [class="Alacritty"] resize shrink width 10 px or 10 ppt; move container to workspace $ws1
+for_window [class="Pcmanfm"]   resize shrink width 10 px or 10 ppt; move container to workspace $ws1
+for_window [class="Subl"]  move position center
+
 for_window [class="st-256color"] move container to workspace $ws5; workspace $ws5
 for_window [class="TelegramDesktop"] move container to workspace $ws4; workspace $ws4
 for_window [class="Hexchat"]  move container to workspace $ws4; workspace $ws4
@@ -280,8 +254,8 @@ bindsym $mod+Ctrl+Up resize grow height 5 px or 5 ppt
 bindsym $mod+Ctrl+Down resize shrink height 5 px or 5 ppt
 bindsym $mod+Ctrl+Left resize grow width 5 px or 5 ppt
 
-no_focus [class="Brave-browser"]
-no_focus [class="mpv"]
+# no_focus [class="Brave-browser"]
+# no_focus [class="mpv"]
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
