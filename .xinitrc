@@ -11,6 +11,7 @@ exec xrdb -merge ~/.Xresources  &
 exec chmod +x .local/bin/* &
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 exec eval "$(ssh-agent -s)"  &
-exec sxhkd &    
+exec sxhkd & 
+exec i3-layouts &   
 exec dunst &
 exec /usr/bin/i3
