@@ -14,7 +14,7 @@ focus_follows_mouse yes
 hide_edge_borders none
 # focus_follows_mouse no
 #default_floating_border none
-gaps outer 10
+# gaps outer 10
 gaps inner 10
 # gaps top 2
 # gaps bottom 2
@@ -29,40 +29,6 @@ show_marks yes
 #hide_edge_borders smart_no_gaps
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
-
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
-#font pango:monospace 9
-
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
-
-# Start XDG autostart .desktop files using dex. See also
-# https://wiki.archlinux.org/index.php/XDG_Autostart
-
-# exec --no-startup-id dex --autostart --environment i3
-# exec --no-startup-id ~/.screenlayout/lg.sh
-# exec --no-startup-id /tmp/eqcommands.sh
-# exec --no-startup-id start-pulseaudio-x11
-# exec --no-startup-id /bin/start-engine --client-console
-# exec --no-startup-id iwctl device wlan1 set-property Powered off
-# exec --no-startup-id iwctl device wlan0 set-property Powered off
-# exec --no-startup-id feh --no-fehbg --bg-scale $HOME/.config/screen/Desktop-60.jpg
-# exec --no-startup-id nitrogen --restore
-# exec --no-startup-id picom -bCG
-# exec --no-startup-id sxhkd
-# exec --no-startup-id xrdb -merge ~/.Xresources
-# exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-# exec --no-startup-id playerctld daemon
-# exec --no-startup-id polybar
-# exec --no-startup-id conky -c ~/.config/conky/clock.conf
-# exec --no-startup-id xss-lock  --transfer-sleep-lock -- ~/.config/i3/scripts/lock --nofork
-# exec --no-startup-id mpd
-# exec --no-startup-id nm-applet
-# exec_always --no-startup-id autotiling
-# exec_always --no-startup-id blueman-applet
-exec_always --no-startup-id python3 ~/.local/bin/autolayout.py
 
 # Key
 bindsym $mod+d       exec --no-startup-id dmenu_run
@@ -86,7 +52,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10 # decrease
 floating_modifier $mod
 
 # Orientation
-default_orientation auto
+default_orientation vertical
 
 # start a terminal
 bindsym $mod+Return exec --no-startup-id alacritty 
@@ -147,9 +113,7 @@ bindsym $mod+a focus parent
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
-
-# focus the child container
-#bindsym $mod+d focus child
+bindsym $mod+Ctrl+n   workspace next
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -183,17 +147,6 @@ bindsym $mod+Ctrl+6 move container to workspace $ws6
 bindsym $mod+Ctrl+7 move container to workspace $ws7
 bindsym $mod+Ctrl+8 move container to workspace $ws8
 
-# You can also use any non-zero value if you'd like to have a border
-for_window [class=".*"]                   border pixel 1
-for_window [class="vlc-main"]             border pixel 0
-for_window [class="vlc"]                  border pixel 1
-for_window [title="Open File"]            floating enable;move absolute position
-for_window [class="Nitrogen"]             floating enable;move absolute position center
-for_window [title="^Media viewer"]        floating enable;move absolute position center
-for_window [class="Gnome-system-monitor"] floating enable;move absolute position center
-for_window [class="File-roller"]          floating enable;move absolute position center
-for_window [class="Gpick"]                floating enable;move absolute position center
-
 # Correct handling of floating windows
 for_window [window_role="pop-up"]         floating enable
 for_window [window_role="bubble"]         floating enable
@@ -202,14 +155,27 @@ for_window [window_role="dialog"]         floating enable
 for_window [window_role="menu"]           floating enable
 for_window [window_role="Preferences"]    floating enable
 
+# You can also use any non-zero value if you'd like to have a border
+for_window [class=".*"]                   border pixel 1
+for_window [class="vlc-main"]             border pixel 0
+for_window [class="vlc"]                  border pixel 1
+for_window [title="Open File"]            floating enable, move absolute position center
+for_window [class="Nitrogen"]             floating enable, move absolute position center
+for_window [title="^Media viewer"]        floating enable, move absolute position center
+for_window [class="Gnome-system-monitor"] floating enable, move absolute position center
+for_window [class="File-roller"]          floating enable, move absolute position center
+for_window [class="Gpick"]                floating enable, move absolute position center
+
+# exec_always --no-startup-id autotiling
 
 # Open specific applications in floating mode
-#for_window [class="Chromium"]  move container to workspace $ws3; workspace $ws3
-for_window [class="Brave-browser"]        move container to workspace $ws3; workspace $ws3;
-for_window [class="Subl"]                 move container to workspace $ws1; workspace $ws1;
-for_window [class="Alacritty"]            move container to workspace $ws1; workspace $ws1;
-for_window [class="Pcmanfm"]              move container to workspace $ws1; workspace $ws1;
-for_window [class="Subl"]                 move absolute position center
+for_window [class="Brave-browser"]   move container to workspace $ws3; workspace $ws3;
+for_window [class="Subl"]            exec --no-startup-id i3-layouts; move container to workspace $ws1; workspace $ws1;
+for_window [class="Alacritty"]       move left;  exec --no-startup-id i3-layouts; move container to workspace $ws1; workspace $ws1;
+for_window [class="Pcmanfm"]         move right; exec --no-startup-id i3-layouts; move container to workspace $ws1; workspace $ws1;
+for_window [class="Subl"]            move absolute position center
+# workspace 1 gaps inner  5 px
+# workspace 1 gaps right  800 px
 
 for_window [class="st-256color"]          move container to workspace $ws5; workspace $ws5
 for_window [class="TelegramDesktop"]      move container to workspace $ws4; workspace $ws4
