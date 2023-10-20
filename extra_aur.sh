@@ -5,7 +5,7 @@ echo "Installing packages from pklist!" & sleep 1
 tput sgr0
 echo
 #echo -e "\n"
-DIR=~/Github/extra
+DIR=~/Github/i3-wm
 BLUE='\033[38;5;4m'
 RED='\033[0;31m'
 GREEN='\033[0;32m'
