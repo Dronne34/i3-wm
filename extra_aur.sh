@@ -87,7 +87,7 @@ echo "Script location: ${BASEDIR}"
 ./papirus.sh
 
 cp -rf i3/ i3status/ i3status-rust/ ~/.config
-
+cp -rf .xinitrc ~/
 echo -e "Install i3-wm config done" & sleep 1
 
 echo -e "Install cursor Bibata-Modern-Ice" & sleep 1
